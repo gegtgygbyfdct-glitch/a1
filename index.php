@@ -10,7 +10,7 @@
   <meta name="description" content="ChicThreadBay explores mulberry silk tailoring, organic cotton weaving, hand embroidery, botanical dyeing, and haute couture garment architecture.">
   
   <!-- Google tag (gtag.js) -->
-  <script async src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1200&q=80"></script>
+  <script async src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&idx=55&q=80"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -66,7 +66,7 @@
         </div>
         <div>
           <div class="hero-portrait-frame">
-            <img src="https://images.unsplash.com/photo-1479064555552-3ef4979f8908?auto=format&fit=crop&w=1200&q=80" alt="Chic Fashion Model Display">
+            <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1200&idx=56&q=80" alt="Chic Fashion Model Display">
             <div class="hero-floating-tag">
               <strong style="color: var(--accent-gold); font-size: 0.95rem;">Empirical Drape Rating: 9.9/10</strong>
               <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.25rem;">Haute Couture Silk Tailoring Standard</p>
@@ -109,27 +109,37 @@
     </div>
   </section>
 
-  <!-- SECTION 3: Interactive Fabric Weave & Thread Density Explorer -->
-  <section class="section" id="fabric-explorer" style="background: var(--bg-secondary);">
+  <!-- SECTION 3: Haute Couture Stitch Anatomy & Garment Metallurgy -->
+  <section class="section" id="stitch-anatomy" style="background: var(--bg-secondary);">
     <div class="container">
       <div class="section-title-wrap">
-        <span class="section-subtitle">Textile Explorer</span>
-        <h2 class="section-title">The Chic Fabric Weave & Thread Density Explorer</h2>
+        <span class="section-subtitle">Sartorial Precision</span>
+        <h2 class="section-title">Haute Couture Stitch Anatomy & Structural Mechanics</h2>
       </div>
-      <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Select a luxury textile specification to inspect its thread count, weave density, and drape benchmark:</p>
-        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
-          <button class="btn btn-outline-gold fabric-btn active-fabric" data-fabric="100% Grade 6A Mulberry Silk Charmeuse" data-desc="22 momme weight mulberry silk with satin weave front, fluid drape, and liquid sheen." data-score="9.9/10 Drape Rating">Mulberry Silk Charmeuse</button>
-          <button class="btn btn-outline-gold fabric-btn" data-fabric="Hand-Loomed Long-Staple Organic Linen" data-desc="200 GSM organic European flax linen woven on traditional wooden handlooms for summer breathability." data-score="9.8/10 Breathability Index">Organic Hand-Loomed Linen</button>
-          <button class="btn btn-outline-gold fabric-btn" data-fabric="Super 150s Mongolian Cashmere Wool" data-desc="15.5 micron ultra-fine cashmere fibers delivering weightless insulation and softness." data-score="9.9/10 Softness Rating">Super 150s Cashmere</button>
-          <button class="btn btn-outline-gold fabric-btn" data-fabric="Bespoke Goldwork Zardozi Embroidered Velvet" data-desc="Heavy cotton velvet embroidered with real metallic thread, pearls, and French knots." data-score="9.7/10 Haute Couture Finish">Goldwork Velvet</button>
+      <div class="grid-4">
+        <div class="chic-card" style="border-top: 3px solid var(--accent-gold);">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">🪡</div>
+          <h3 style="font-size: 1.25rem; color: var(--accent-gold); margin-bottom: 0.5rem;">Hand-Picked Lapel Stitching</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">2mm pitch edge stitching (Passamaneria) securing canvas chest pieces without puckering.</p>
+          <span style="color: var(--accent-emerald); font-weight: 700; font-size: 0.85rem;">Artisanal Rating: 9.9/10</span>
         </div>
-        <div id="fabric-detail">
-          <div class="chic-card" style="border-left: 4px solid var(--accent-gold);">
-            <h3 style="color: var(--accent-gold); font-size: 1.5rem; margin-bottom: 0.5rem;">100% Grade 6A Mulberry Silk Charmeuse Specification</h3>
-            <p style="color: var(--text-secondary); margin-bottom: 1rem;">22 momme weight mulberry silk with satin weave front, fluid drape, and liquid sheen.</p>
-            <strong style="color: var(--accent-emerald); font-size: 0.95rem;">Empirical Textile Luster Index: 9.9/10 Drape Rating</strong>
-          </div>
+        <div class="chic-card" style="border-top: 3px solid var(--accent-gold);">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">🧵</div>
+          <h3 style="font-size: 1.25rem; color: var(--accent-gold); margin-bottom: 0.5rem;">Floating Horsehair Canvas</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Unbound floating haircloth interlining molded with steam to shape natural shoulder rolls.</p>
+          <span style="color: var(--accent-emerald); font-weight: 700; font-size: 0.85rem;">Flexibility Index: 9.8/10</span>
+        </div>
+        <div class="chic-card" style="border-top: 3px solid var(--accent-gold);">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">✨</div>
+          <h3 style="font-size: 1.25rem; color: var(--accent-gold); margin-bottom: 0.5rem;">Hand-Bound Silk Buttonholes</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Gimp thread reinforced buttonholes sewn with wax-treated silk thread for lifetime durability.</p>
+          <span style="color: var(--accent-emerald); font-weight: 700; font-size: 0.85rem;">Durability Metric: 100/100</span>
+        </div>
+        <div class="chic-card" style="border-top: 3px solid var(--accent-gold);">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">📐</div>
+          <h3 style="font-size: 1.25rem; color: var(--accent-gold); margin-bottom: 0.5rem;">Hong Kong Seam Enclosures</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Interior seam allowances bound in lightweight bias-cut silk organza ribbon.</p>
+          <span style="color: var(--accent-emerald); font-weight: 700; font-size: 0.85rem;">Fray Prevention: 99.5%</span>
         </div>
       </div>
     </div>
@@ -153,33 +163,53 @@
           <a href="about.html" class="btn btn-emerald">Our Fashion Manifesto</a>
         </div>
         <div>
-          <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=1200&q=80" alt="Chic Apparel Display" style="border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 20px 40px rgba(0,0,0,0.6);">
+          <img src="https://images.unsplash.com/photo-1550614000-4895a10e1bfd?auto=format&fit=crop&w=1200&idx=57&q=80" alt="Chic Apparel Display" style="border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 20px 40px rgba(0,0,0,0.6);">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 5: Interactive Fashion Silhouette Matcher & Style Diagnostic Quiz -->
-  <section class="section" id="style-quiz" style="background: var(--bg-secondary);">
+  <!-- SECTION 5: Seasonal Haute Couture Textile Collection Showcase -->
+  <section class="section" id="seasonal-showcase" style="background: var(--bg-secondary);">
     <div class="container">
       <div class="section-title-wrap">
-        <span class="section-subtitle">Style Diagnostic</span>
-        <h2 class="section-title">Fashion Silhouette Matcher Quiz</h2>
+        <span class="section-subtitle">Textile Gallery</span>
+        <h2 class="section-title">Seasonal Haute Couture Collection Specifications</h2>
       </div>
-      <div class="chic-card" style="max-width: 750px; margin: 0 auto;">
-        <h3 style="color: var(--accent-gold); margin-bottom: 1rem;">What Is Your Primary Wardrobe Architecture & Textile Preference?</h3>
-        <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <button class="style-quiz-btn btn btn-outline-gold" style="text-align:left; justify-content:flex-start;" data-rec="Bias-Cut Mulberry Silk Slip Dress with French Seams & Mother-of-Pearl Buttons.">
-            A. Fluid Evening Glamour, 22-Momme Mulberry Silk & Bias-Cut Silhouettes
-          </button>
-          <button class="style-quiz-btn btn btn-outline-gold" style="text-align:left; justify-content:flex-start;" data-rec="Structured Cashmere Wool Blazer with Hand-Stitched Lapels & Horn Buttons.">
-            B. Tailored Executive Presence, Super 150s Cashmere Wool & Sharp Shoulder Seams
-          </button>
-          <button class="style-quiz-btn btn btn-outline-gold" style="text-align:left; justify-content:flex-start;" data-rec="Hand-Loomed European Linen Tunic with Botanical Indigo Dye.">
-            C. Breathable Summer Chic, Organic Hand-Loomed Linen & Natural Plant Dyes
-          </button>
+      <div class="grid-3">
+        <div class="chic-card" style="border-color: var(--accent-gold);">
+          <div style="padding: 0.4rem 0.8rem; background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); font-size: 0.75rem; border-radius: 20px; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 1rem;">Autumn/Winter Collection</div>
+          <h3 style="font-size: 1.4rem; color: var(--text-primary); margin-bottom: 0.75rem;">Velvet & Mulberry Evening Wear</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.25rem; line-height: 1.7;">
+            Deep emerald green cotton velvet paired with 22-momme silk charmeuse linings, featuring hand-embroidered goldwork cuffs.
+          </p>
+          <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem; color: var(--accent-gold); font-size: 0.85rem; font-weight: 700;">
+            • Thread Count: 380 Threads/Inch<br>
+            • Luster Rating: 9.9/10
+          </div>
         </div>
-        <div id="style-quiz-result"></div>
+        <div class="chic-card" style="border-color: var(--accent-emerald);">
+          <div style="padding: 0.4rem 0.8rem; background: rgba(5, 150, 105, 0.15); color: var(--accent-emerald); font-size: 0.75rem; border-radius: 20px; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 1rem;">Spring/Summer Collection</div>
+          <h3 style="font-size: 1.4rem; color: var(--text-primary); margin-bottom: 0.75rem;">Hand-Loomed Linen & Botanical Indigo</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.25rem; line-height: 1.7;">
+            200 GSM European flax linen hand-dyed in organic indigo vats, designed with natural slubs and breathable unlined silhouettes.
+          </p>
+          <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem; color: var(--accent-emerald); font-size: 0.85rem; font-weight: 700;">
+            • Weight: 200 GSM Flax<br>
+            • Airflow Index: 9.8/10
+          </div>
+        </div>
+        <div class="chic-card" style="border-color: var(--accent-mint);">
+          <div style="padding: 0.4rem 0.8rem; background: rgba(16, 185, 129, 0.15); color: var(--accent-mint); font-size: 0.75rem; border-radius: 20px; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 1rem;">Executive Bespoke</div>
+          <h3 style="font-size: 1.4rem; color: var(--text-primary); margin-bottom: 0.75rem;">Super 150s Cashmere Tailored Outerwear</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.25rem; line-height: 1.7;">
+            15.5 micron Mongolian cashmere wool double-breasted overcoats engineered with floating horsehair chest canvas.
+          </p>
+          <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem; color: var(--accent-mint); font-size: 0.85rem; font-weight: 700;">
+            • Fiber Fineness: 15.5 Micron<br>
+            • Thermal Ratio: 9.9/10
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -255,7 +285,7 @@
       <div class="grid-3">
         <div class="blog-card">
           <div class="blog-img-wrap">
-            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80" alt="Mulberry Silk Tailoring">
+            <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1200&idx=58&q=80" alt="Mulberry Silk Tailoring">
           </div>
           <div class="blog-content">
             <span class="blog-tag">Mulberry Silk</span>
@@ -267,7 +297,7 @@
         </div>
         <div class="blog-card">
           <div class="blog-img-wrap">
-            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1200&q=80" alt="Organic Cotton">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&idx=59&q=80" alt="Organic Cotton">
           </div>
           <div class="blog-content">
             <span class="blog-tag">Organic Cotton</span>
@@ -279,7 +309,7 @@
         </div>
         <div class="blog-card">
           <div class="blog-img-wrap">
-            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=80" alt="Hand Embroidery">
+            <img src="https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?auto=format&fit=crop&w=1200&idx=60&q=80" alt="Hand Embroidery">
           </div>
           <div class="blog-content">
             <span class="blog-tag">Hand Embroidery</span>
